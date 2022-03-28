@@ -18,3 +18,6 @@ On right panels:
 - Save: save current results. The result will be saved in variable 'roi_coord', as described above.
 
 Additionally, you can choose to display all ROIs (display all checkbox), display ROI number (ROI number checkbox), and view spatial components. ROI display size and transparency can also be adjusted (it does not have any effect on the results, the results simply store center location of each ROI).
+
+
+![plot](./interface_screenshot.PNG)
