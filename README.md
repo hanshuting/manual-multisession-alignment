@@ -1,9 +1,11 @@
 # manual-multisession-alignment
 A simple tool for manually track neurons across days.
+This tool is developed for aligning suite2p results (exported to MatLab) across sessions/days.
 
 This is a MATLAB GUI for manually tracking the same neurons across multiple session/days. Test run on Matlab2018b works fine. Still under more testing/development. The GUI displays a set of image templates, and allows you to interactively add new ROIs, and edit their locations individually on each of the templates.
 
-Functions:
+## Functions:
+### Loading template and manually curating registration landmarks
 Template panel:
 - Load template: choose a .mat file that contains image templates. Templates have to be stored in a cell array named 'template'; each cell has the template (2d matrix) from a separate day/session.
   Templates can be viewed by scrolling the middle wheel of the mouse.
@@ -18,10 +20,40 @@ ROI panel:
 - Save: save current results. The result will be saved in variable 'roi_coord', as described above.
 
 Display settings panel:
-You can choose to display all ROIs (display all checkbox), display ROI number (ROI number checkbox), and view spatial components. ROI display size and transparency can also be adjusted (it does not have any effect on the results, the results simply store center location of each ROI).
+- Display all: display all ROIs
+- ROI number: display ROI number (as shown in the ROIs list above)
+- Display spatial component: view spatial components
+- ROI size: ROI display size
+- Alpha: ROI display transparency
 
-Register templates from ROIs:
+### Register templates from ROIs
 if you have annotated the same neurons (at least 4) across templates, you can perform an ROI-based template registration here. Template will be matched to a chosen one using manually tracked ROIs as landmarks. Spatial components (need to be loaded) will also be transformed. The result will be shown in a new window, and ROIs that are spatially close enough across templates will be assigned to the same neuron (stored in a variable 'roi_list' with shape number_unique_neuron x number_template). Neurons that can't be found is stored as NaN. The next figure also provide tools to visualize assigned neurons.
 Note that the manually annotated neurons don't have to be found in all templates. Templates are matched to the adjacent ones, therefore only the neurons that are tracked in two adjacent templates will be used for registering these two templates. All templates and spatial components are transformed to the chosen template number in the end.
 
+Settings:
+- horizontal: number of imaging planes in horizontal axis in the template (suitable for multiplane imaging)
+- vertical: number of imaging planes in vertical axis in the template (suitable for multiplane imaging)
+- Template: Template number for registration
+
+## ROI matching
+Once you run the registration, a new window will be displayed. In this window, you can view the registered templates, as well as match ROIs according to a spatial distance threshold.
+
+Match ROIs panel:
+- Max dist.: maximum distance between preloaded spatial component centroid across days to be considered the same ROI. The smaller the number, the more strict the matching criteria.
+- Show min. days: display ROIs that are tracked for at least this number of days/sessions
+- Show max. days: display ROIs that are tracked for at most this number of days/sessions
+- Save: save mat result. This will save a variable "roi_list" with the size number_unique_rois-by-number_days. Each row of this matrix contains the index of this tracked ROI across days. Non-matched days are filled with NaNs. 
+
+ROI panel:
+- Delete ROI: delete matched ROIs (for all days) from the listbox
+- Del on frame: delete the current ROI from the matched results on the current frame
+
+## Interface
+### Interface for loading template and manually selecting landmarks:
+
 ![plot](./interface_screenshot.PNG)
+
+
+### Interface for displaying and modifying registered template, and matched ROIs:
+
+![plot](./registration_result_interface.PNG)
