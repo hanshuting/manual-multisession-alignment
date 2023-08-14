@@ -51,7 +51,7 @@ ROI panel:
 ## Interface
 ### Interface for loading template and manually selecting landmarks:
 
-![plot](./interface_screenshot.PNG)
+![plot](./template_interface.PNG)
 
 
 ### Interface for displaying and modifying registered template, and matched ROIs:
