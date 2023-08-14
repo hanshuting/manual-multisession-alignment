@@ -7,6 +7,8 @@ This is a MATLAB GUI for manually tracking the same neurons across multiple sess
 ## Functions:
 ### Loading template and manually curating registration landmarks
 Template panel:
+
+See `save_multisession_template_example` for an example of how to generate template files from suite2p results.
 - Load template: choose a .mat file that contains image templates. Templates have to be stored in a cell array named 'template'; each cell has the template (2d matrix) from a separate day/session.
   Templates can be viewed by scrolling the middle wheel of the mouse.
 - Load spatial component: choose a .mat file that contains pre-defined spatial components for each day. Spatial components have to be stored in a cell array (1 x template number) named 'ROI_mask'. Each cell has two fields: ROI_mask{n}.cont is a number_of_neuron x 1 cell array, containing contour points for each active cell region; ROI_mask{n}.cent is a number_of_neuron x 2 matrix, containing centroids of neurons. This is not required for manually tracking neurons, but it's required for ROI-based registration.
