@@ -12,8 +12,9 @@ See `save_multisession_template_example` for an example of how to generate templ
 - Load template: choose a .mat file that contains image templates. Templates have to be stored in a cell array named 'template'; each cell has the template (2d matrix) from a separate day/session.
   Templates can be viewed by scrolling the middle wheel of the mouse.
 - Load spatial component: choose a .mat file that contains pre-defined spatial components for each day. Spatial components have to be stored in a cell array (1 x template number) named 'ROI_mask'. Each cell has two fields: ROI_mask{n}.cont is a number_of_neuron x 1 cell array, containing contour points for each active cell region; ROI_mask{n}.cent is a number_of_neuron x 2 matrix, containing centroids of neurons. This is not required for manually tracking neurons, but it's required for ROI-based registration.
-- Add on Frame (keyboard shortcut: a): when clicked/pressed a, you can click anywhere on the current template and create/edit the location of current ROI (new ROIs must be added first from the right panel).
-- Delete on Frame (keyboard shortcut: d): when clicked/pressed d, you can delete the location of the current ROI on this frame.
+- Add on Frame (keyboard shortcut: a; press once, not hold): when clicked/pressed a, you can click anywhere on the current template and create/edit the location of current ROI (new ROIs must be added first from the right panel).
+- Delete on Frame (keyboard shortcut: d; press once, not hold): when clicked/pressed d, you can delete the location of the current ROI on this frame.
+* When a new ROI is added, the first time keyboard shortcut won't work. You'll have to press 'a' and click (nothing will happen), and press 'a' and click again to add a ROI on frame (this time it will work).
 
 ROI panel:
 - Add ROI: add new ROI to the listbox
@@ -49,6 +50,10 @@ Match ROIs panel:
 ROI panel:
 - Delete ROI: delete matched ROIs (for all days) from the listbox
 - Del on frame: delete the current ROI from the matched results on the current frame
+
+## Running the program
+Before running the program, you need to have the template and spatial component files ready (see `save_multisession_template_example` for an example).
+To run the program, simply launch `manual_multisession_align.mlapp` with matlab, and run directly using the AppDesigner. No installation is needed.
 
 ## Interface
 ### Interface for loading template and manually selecting landmarks:
